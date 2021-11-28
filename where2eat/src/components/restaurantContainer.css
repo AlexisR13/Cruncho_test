@@ -1,0 +1,21 @@
+.RestaurantContainer {
+    padding: 1%;
+    border: orange 1px solid;
+    border-radius: 5px;
+}
+
+.RestaurantInfo {
+    margin: 0 10%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.IconAndText {
+    display: flex;
+    align-items: center;
+}
+
+.Icon {
+    height: 15px;
+    margin-right: 10px;
+}

@@ -11,8 +11,8 @@ import MapZoom from './components/mapZoom';
 
 
 function App() {
-    const [position, setPosition] = useState({lat: 48.856614, lng: 2.3522219})
-    const [zoom, setZoom] = useState(15)
+    const [position, setPosition] = useState({lat: 48.858370, lng: 2.294481})   // Eiffel Tower :)
+    const [zoom, setZoom] = useState(16)
     const [restaurants, setRestaurants] = useState([])
     const [clearMap, setClearMap] = useState(false)
 

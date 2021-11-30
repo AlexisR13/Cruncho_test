@@ -2,9 +2,10 @@ import React, {useState, useEffect} from 'react';
 import H from "@here/maps-api-for-javascript";
 import { API_KEY } from '../env';
 import { Marker, MarkerHere } from './marker';
-import { RestaurantsList } from './restaurantContainer';
+import { Restaurant } from '../types';
 
-export default function Map(props: {lat: number, lng: number, restaurantsList: any}) {
+
+export default function Map(props: {lat: number, lng: number, restaurantsList: Restaurant[]}) {
     // the reference to the container
     const ref = React.createRef();
     // reference to the map
@@ -31,20 +32,22 @@ export default function Map(props: {lat: number, lng: number, restaurantsList: a
         }
         else {
             //@ts-ignore
+            map.removeObjects(map.getObjects ())
+            //@ts-ignore
             map.setCenter({lat: props.lat, lng: props.lng})
             // map.setZoom(props.zoom)
 
-            // Add the marker to the map:
+            // Add markers to the map:
             const marker = MarkerHere(props.lat, props.lng)
             //@ts-ignore
             map.addObject(marker);
-            props.restaurantsList.reverse().map((restaurant :any, index: number) => {
+            props.restaurantsList.reverse().forEach((restaurant: Restaurant, index: number) => {
                 //@ts-ignore
                 map.addObject(Marker(restaurant, (props.restaurantsList.length - index).toString()))
             })             
         }
 
-    }, [map, ref, props.lat, props.lng])
+    }, [map, ref, props.lat, props.lng, props.restaurantsList])
 
 
     return (

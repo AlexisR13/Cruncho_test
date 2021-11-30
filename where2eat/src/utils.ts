@@ -1,4 +1,7 @@
-export function getPhone(restaurant: any){
+import { Restaurant } from "./types"
+
+
+export function getPhone(restaurant: Restaurant){
     var phone = "Ø"
     if (restaurant.contacts && restaurant.contacts[0].phone){
         phone = restaurant.contacts[0].phone[0].value
@@ -6,7 +9,8 @@ export function getPhone(restaurant: any){
     return phone
 }
 
-export function getIsOpen(restaurant: any){
+
+export function getIsOpen(restaurant: Restaurant): [null|string, string, null|string[]]{
     var isOpen = null
     var color = ""
     var openHours = null

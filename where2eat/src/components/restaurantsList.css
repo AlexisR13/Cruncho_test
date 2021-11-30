@@ -1,0 +1,60 @@
+@font-face {
+    font-family: 'Adigiana-Toybox-Regular';
+    src:url('./../fonts/Adigiana-Toybox-Regular/Adigiana-Toybox-Regular.ttf.woff') format('woff'),
+        url('./../fonts/Adigiana-Toybox-Regular/Adigiana-Toybox-Regular.ttf.svg#Adigiana-Toybox-Regular') format('svg'),
+        url('./../fonts/Adigiana-Toybox-Regular/Adigiana-Toybox-Regular.ttf.eot'),
+        url('./../fonts/Adigiana-Toybox-Regular/Adigiana-Toybox-Regular.ttf.eot?#iefix') format('embedded-opentype'); 
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+.RestaurantContainer {
+    margin-bottom: 5px;
+    margin-right: 15px;
+    padding: 1%;
+    background-color: white;
+    border: #FF7055 3px solid;
+    border-radius: 5px;
+}
+
+.RestaurantContainer h2 {
+    font-family: 'Adigiana-Toybox-Regular';
+}
+
+.RestaurantInfo {
+    margin: 0 10%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.IconAndText {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+.Icon {
+    height: 13px;
+    margin-right: 10px;
+}
+
+.addressText {
+    font-size: 0.9em;
+}
+
+.openHours {
+    margin-left: 20%;
+    text-align: left;
+    font-size: 0.9em;
+}
+
+.plusButton {
+    width: 80%;
+    background-color: white;
+    border: none;
+    border-top: lightgray 1px solid;
+    padding-top: 5px;
+}

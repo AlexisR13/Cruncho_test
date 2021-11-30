@@ -3,7 +3,7 @@ import { getIsOpen } from "../utils";
 
 
 export function Marker(restaurant: any, text: string){
-    const [ _, color, __] = getIsOpen(restaurant)
+    const [ , color, ] = getIsOpen(restaurant)
 
     // Define a variable holding SVG mark-up that defines an icon image:
     var svgMarkup = '<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg">' +

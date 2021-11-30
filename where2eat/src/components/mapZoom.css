@@ -1,0 +1,26 @@
+#ButtonsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    margin-left: -30px;
+    z-index: 1;
+}
+
+
+button {
+    height: 50px;
+    background-color: white;
+    border: black 1px solid;
+}
+
+#upButton {
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+#downButton {
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top: none
+}

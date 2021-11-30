@@ -7,21 +7,23 @@ import './App.css';
 import Map from './components/map';
 import { API_KEY } from './env';
 import { RestaurantsList } from './components/restaurantsList';
+import MapZoom from './components/mapZoom';
 
 
 function App() {
     const [position, setPosition] = useState({lat: 48.856614, lng: 2.3522219})
+    const [zoom, setZoom] = useState(15)
     const [restaurants, setRestaurants] = useState([])
+    const [clearMap, setClearMap] = useState(false)
 
-    getCurrentLocation()
-    function getCurrentLocation() {
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition((position: any) => {
-            setPosition({ lat: position.coords.latitude, lng: position.coords.longitude })
-          });
-        }
+    // get current location if possible
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position: any) => {
+        setPosition({ lat: position.coords.latitude, lng: position.coords.longitude })
+        });
     }
 
+    // change map position based on the address search
     async function getPositionFromSearch(e: FormEvent){
         e.preventDefault()
         //@ts-ignore
@@ -35,14 +37,32 @@ function App() {
                               getRestaurants(pos);})
     }
 
+    // show closest restaurants
     async function getRestaurants(position: {lat: number, lng: number}){
         const pos = position.lat.toString() +","+ position.lng.toString()
         const url = "https://discover.search.hereapi.com/v1/discover?at=" + pos 
                     + "&q=restaurant&apiKey=" + API_KEY
+        setClearMap(true)
         fetch(url).then(data => data.json())
                 .then(res => setRestaurants(res.items.slice(0,10)))
+                .then(() => setClearMap(false))
     }
 
+
+    // MAP VIEW FUNCTIONS
+    // handle zoom with buttons
+    function handleZoomIn(){
+        setZoom(zoom*1.05)
+    }
+    function handleZoomOut(){
+        setZoom(zoom*0.95)
+    }
+
+    // interactive map
+    function handleMapViewChange(zoom: number, lat: number, lng: number) {
+        setPosition({lat: lat, lng: lng})
+        setZoom(zoom)
+    }
 
 
     return (
@@ -72,10 +92,20 @@ function App() {
                         </button>
                     </form>
 
-                    <Map lat={position.lat} lng={position.lng} 
+                    <Map lat={position.lat} lng={position.lng} zoom={zoom}
                         restaurantsList={restaurants}
+                        onMapViewChange={handleMapViewChange}
+                        clearMap={clearMap}
                         />
                 </div>
+
+                {/* Zoom buttons on the map */}
+                <MapZoom
+                    zoom={zoom}
+                    onZoomIn={handleZoomIn}
+                    onZoomOut={handleZoomOut}
+                />
+
 
                 {/* Right half screen */}
                 { restaurants.length>0 ?

@@ -44,7 +44,7 @@ function App() {
                     + "&q=restaurant&apiKey=" + API_KEY
         setClearMap(true)
         fetch(url).then(data => data.json())
-                .then(res => setRestaurants(res.items.slice(0,10)))
+                .then(res => setRestaurants(res.items.slice(0,10).reverse()))
                 .then(() => setClearMap(false))
     }
 

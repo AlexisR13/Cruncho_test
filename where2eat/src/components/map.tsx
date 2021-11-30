@@ -67,7 +67,7 @@ export default function Map(
 
                 // add restaurants'markers
                 props.restaurantsList.reverse().forEach((restaurant: Restaurant, index: number) => {
-                    map.addObject(Marker(restaurant, (props.restaurantsList.length - index).toString()))
+                    map.addObject(Marker(restaurant, index.toString()))
                 })
             }       
         }

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import './restaurantsList.css'
 import phoneIcon from './../icons/call.png'
 import distanceIcon from './../icons/distance.png'
@@ -11,7 +12,10 @@ import IconAndText from './iconAndText';
 
 
 export function RestaurantsList(restaurants: Restaurant[]) {
+    
     return restaurants.map((restaurant: Restaurant, index: number) => {
+
+
         const phone = getPhone(restaurant)
         const [isOpen, color, openHours] = getIsOpen(restaurant)
 
@@ -22,19 +26,24 @@ export function RestaurantsList(restaurants: Restaurant[]) {
             return newAddress
         }
 
+        function formatDistance(distance: number){
+            if (distance>1000){
+                return Math.trunc(distance/100)/10 + " km"
+            }
+            else{
+                return Math.trunc(distance/10)*10 + " m"
+            }
+        }
+
         function MoreMinusButton(index: number){
-            //@ts-ignore
+            // Show/hide opening hours details and change button icon
             var src = document.getElementById("plusButton"+index).firstChild.src
             if (src.includes('plus')){
-                //@ts-ignore
                 document.getElementById("openingHours"+index).style.display = "block"
-                //@ts-ignore
                 document.getElementById("plusButton"+index).firstChild.src = minus
             }
             else {
-                //@ts-ignore
                 document.getElementById("openingHours"+index).style.display = "none"
-                //@ts-ignore
                 document.getElementById("plusButton"+index).firstChild.src = plus
             }
         }
@@ -62,7 +71,7 @@ export function RestaurantsList(restaurants: Restaurant[]) {
                     />
                     <IconAndText
                         icon={distanceIcon}
-                        text={restaurant.distance+ " m"}
+                        text={formatDistance(restaurant.distance)}
                     />
 
                 </div>
